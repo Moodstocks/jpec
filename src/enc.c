@@ -123,29 +123,29 @@ static void jpec_enc_write_soi(jpec_enc_t *e) {
 
 static void jpec_enc_write_app0(jpec_enc_t *e) {
   assert(e);
-	jpec_buffer_write_2bytes(e->buf, 0xFFE0); /* APP0 marker */
-	jpec_buffer_write_2bytes(e->buf, 0x0010); /* segment length */
-	jpec_buffer_write_byte(e->buf, 0x4A);     /* 'J' */
-	jpec_buffer_write_byte(e->buf, 0x46);     /* 'F' */
-	jpec_buffer_write_byte(e->buf, 0x49);     /* 'I' */
-	jpec_buffer_write_byte(e->buf, 0x46);     /* 'F' */
-	jpec_buffer_write_byte(e->buf, 0x00);     /* '\0' */
-	jpec_buffer_write_2bytes(e->buf, 0x0101); /* v1.1 */
-	jpec_buffer_write_byte(e->buf, 0x00);     /* no density unit */
-	jpec_buffer_write_2bytes(e->buf, 0x0001); /* X density = 1 */
-	jpec_buffer_write_2bytes(e->buf, 0x0001); /* Y density = 1 */
-	jpec_buffer_write_byte(e->buf, 0x00);     /* thumbnail width = 0 */
-	jpec_buffer_write_byte(e->buf, 0x00);     /* thumbnail height = 0 */
+  jpec_buffer_write_2bytes(e->buf, 0xFFE0); /* APP0 marker */
+  jpec_buffer_write_2bytes(e->buf, 0x0010); /* segment length */
+  jpec_buffer_write_byte(e->buf, 0x4A);     /* 'J' */
+  jpec_buffer_write_byte(e->buf, 0x46);     /* 'F' */
+  jpec_buffer_write_byte(e->buf, 0x49);     /* 'I' */
+  jpec_buffer_write_byte(e->buf, 0x46);     /* 'F' */
+  jpec_buffer_write_byte(e->buf, 0x00);     /* '\0' */
+  jpec_buffer_write_2bytes(e->buf, 0x0101); /* v1.1 */
+  jpec_buffer_write_byte(e->buf, 0x00);     /* no density unit */
+  jpec_buffer_write_2bytes(e->buf, 0x0001); /* X density = 1 */
+  jpec_buffer_write_2bytes(e->buf, 0x0001); /* Y density = 1 */
+  jpec_buffer_write_byte(e->buf, 0x00);     /* thumbnail width = 0 */
+  jpec_buffer_write_byte(e->buf, 0x00);     /* thumbnail height = 0 */
 }
 
 static void jpec_enc_write_dqt(jpec_enc_t *e) {
   assert(e);
   jpec_buffer_write_2bytes(e->buf, 0xFFDB); /* DQT marker */
   jpec_buffer_write_2bytes(e->buf, 0x0043); /* segment length */
-	jpec_buffer_write_byte(e->buf, 0x00);     /* table 0, 8-bit precision (0) */
+  jpec_buffer_write_byte(e->buf, 0x00);     /* table 0, 8-bit precision (0) */
   for (int i = 0; i < 64; i++) {
-	  jpec_buffer_write_byte(e->buf, e->dqt[jpec_zz[i]]);
-	}
+    jpec_buffer_write_byte(e->buf, e->dqt[jpec_zz[i]]);
+  }
 }
 
 static void jpec_enc_write_sof0(jpec_enc_t *e) {
@@ -167,20 +167,20 @@ static void jpec_enc_write_dht(jpec_enc_t *e) {
   jpec_buffer_write_2bytes(e->buf, 19 + jpec_dc_nb_vals); /* segment length */
   jpec_buffer_write_byte(e->buf, 0x00);              /* table 0 (DC), type 0 (0 = Y, 1 = UV) */
   for (int i = 0; i < 16; i++) {
-	  jpec_buffer_write_byte(e->buf, jpec_dc_nodes[i+1]);
-	}
+    jpec_buffer_write_byte(e->buf, jpec_dc_nodes[i+1]);
+  }
   for (int i = 0; i < jpec_dc_nb_vals; i++) {
-	  jpec_buffer_write_byte(e->buf, jpec_dc_vals[i]);
-	}
-	jpec_buffer_write_2bytes(e->buf, 0xFFC4);           /* DHT marker */
-	jpec_buffer_write_2bytes(e->buf, 19 + jpec_ac_nb_vals);
-	jpec_buffer_write_byte(e->buf, 0x10);               /* table 1 (AC), type 0 (0 = Y, 1 = UV) */
+    jpec_buffer_write_byte(e->buf, jpec_dc_vals[i]);
+  }
+  jpec_buffer_write_2bytes(e->buf, 0xFFC4);           /* DHT marker */
+  jpec_buffer_write_2bytes(e->buf, 19 + jpec_ac_nb_vals);
+  jpec_buffer_write_byte(e->buf, 0x10);               /* table 1 (AC), type 0 (0 = Y, 1 = UV) */
   for (int i = 0; i < 16; i++) {
-	  jpec_buffer_write_byte(e->buf, jpec_ac_nodes[i+1]);
-	}
+    jpec_buffer_write_byte(e->buf, jpec_ac_nodes[i+1]);
+  }
   for (int i = 0; i < jpec_ac_nb_vals; i++) {
-	  jpec_buffer_write_byte(e->buf, jpec_ac_vals[i]);
-	}
+    jpec_buffer_write_byte(e->buf, jpec_ac_vals[i]);
+  }
 }
 
 static void jpec_enc_write_sos(jpec_enc_t *e) {

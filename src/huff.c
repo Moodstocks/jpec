@@ -29,11 +29,11 @@
   JPEC_nbits = (!JPEC_val) ? 0 : WORD_BIT - __builtin_clz(JPEC_val)
 #else
 #define JPEC_HUFF_NBITS(JPEC_nbits, JPEC_val) \
-    JPEC_nbits = 0; \
-    while (val) { \
-      JPEC_nbits++; \
-      val >>= 1; \
-    }
+  JPEC_nbits = 0; \
+  while (val) { \
+    JPEC_nbits++; \
+    val >>= 1; \
+  }
 #endif
 
 /* Private function prototypes */
