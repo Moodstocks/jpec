@@ -1,0 +1,5 @@
+*.o
+*.a
+*.DS_Store
+jpec
+result.jpg
