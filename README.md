@@ -8,7 +8,7 @@ It is both **portable** (tested on x86 and ARM) and **lightweight** (around 600 
 
 The library has no external dependencies.
 
-It is a perfect candidate if you have some embedded C code you need to extend with a JPEG encoder.
+It is a perfect candidate if you have some embedded C code you need to extend with a JPEG encoder the easy way, e.g. it is currently used in production within the [Moodstocks SDK](https://github.com/Moodstocks/moodstocks-sdk) (as of release v3.1) to compress frames that are sent to [Moodstocks API](https://github.com/Moodstocks/moodstocks-api) search service.
 
 ## Features
 
