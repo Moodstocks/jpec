@@ -10,6 +10,8 @@ The library has no external dependencies.
 
 It is a perfect candidate if you have some embedded C code you need to extend with a JPEG encoder the easy way, e.g. it is currently used in production within the [Moodstocks SDK](https://github.com/Moodstocks/moodstocks-sdk) (as of release v3.1) to compress frames that are sent to [Moodstocks API](https://github.com/Moodstocks/moodstocks-api) search service.
 
+If you want to know more, feel free to read this [blog post](http://www.moodstocks.com/2012/02/10/jpec-the-whys-and-the-hows/).
+
 ## Features
 
 The library allows you to write JPEG compressed images from input image data on memory. No more, no less.
