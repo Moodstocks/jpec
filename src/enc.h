@@ -50,6 +50,7 @@ struct jpec_enc_t_ {
   const uint8_t *img;                   /* image buffer */
   uint16_t w;                           /* image width */
   uint16_t h;                           /* image height */
+  uint16_t w8;                          /* w rounded to upper multiple of 8 */
   /** JPEG extensible byte buffer */
   jpec_buffer_t *buf;
   /** Compression parameters */

@@ -53,9 +53,10 @@ jpec_enc_t *jpec_enc_new2(const uint8_t *img, uint16_t w, uint16_t h, int q) {
   jpec_enc_t *e = malloc(sizeof(*e));
   e->img = img;
   e->w = w;
+  e->w8 = (((w-1)>>3)+1)<<3;
   e->h = h;
   e->qual = q;
-  e->bmax = (w * h) >> 6;
+  e->bmax = (((w-1)>>3)+1) * (((h-1)>>3)+1);
   e->bnum = -1;
   e->bx = -1;
   e->by = -1;
@@ -200,15 +201,16 @@ static int jpec_enc_next_block(jpec_enc_t *e) {
   assert(e);
   int rv = (++e->bnum >= e->bmax) ? 0 : 1;
   if (rv) {
-    e->bx =   (e->bnum << 3) % e->w;
-    e->by = ( (e->bnum << 3) / e->w ) << 3;
+    e->bx =   (e->bnum << 3) % e->w8;
+    e->by = ( (e->bnum << 3) / e->w8 ) << 3;
   }
   return rv;
 }
 
 static void jpec_enc_block_dct(jpec_enc_t *e) {
   assert(e && e->bnum >= 0);
-#define JPEC_BLOCK(col,row) e->img[(e->by + row) * e->w + (e->bx + col)]
+#define JPEC_BLOCK(col,row) e->img[(((e->by + row) < e->h) ? e->by + row : e->h-1) * \
+                            e->w + (((e->bx + col) < e->w) ? e->bx + col : e->w-1)]
   const float* coeff = jpec_dct;
   float tmp[64];
   for (int row = 0; row < 8; row++) {
