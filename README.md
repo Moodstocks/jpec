@@ -19,7 +19,6 @@ The library allows you to write JPEG compressed images from input image data on 
 More precisely:
 
 * it works in **grayscale only** (monochrome JPEG file): there is no support for color so far,
-* it does not support border filling so far, i.e. the input image **MUST** represent an integer number of blocks,
 * it produces baseline, DCT-based (SOF0), JFIF 1.01 (APP0) JPEG-s,
 * it supports **8x8 blocks only**,
 * it includes default quantization and Huffman tables that are not customizable at runtime.
