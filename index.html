@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jpec by Moodstocks</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Jpec</h1>
+        <p>A lightweight and portable JPEG encoder written in C.</p>
+        <p class="view"><a href="https://github.com/Moodstocks/jpec">View the Project on GitHub <small>Moodstocks/jpec</small></a></p>
+        <ul>
+          <li><a href="https://github.com/Moodstocks/jpec/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Moodstocks/jpec/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Moodstocks/jpec">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>Overview</h2>
+
+<p>jpec is a minimalistic JPEG encoder written in C with a focus on <strong>simplicity</strong>.</p>
+
+<p>It is both <strong>portable</strong> (tested on x86 and ARM) and <strong>lightweight</strong> (around 600 LOC).</p>
+
+<p>The library has no external dependencies.</p>
+
+<p>It is a perfect candidate if you have some embedded C code you need to extend with a JPEG encoder the easy way, e.g. it is currently used in production within the <a href="https://github.com/Moodstocks/moodstocks-sdk">Moodstocks SDK</a> (as of release v3.1) to compress frames that are sent to <a href="https://github.com/Moodstocks/moodstocks-api">Moodstocks API</a> search service.</p>
+
+<p>If you want to know more, feel free to read this <a href="http://www.moodstocks.com/2012/02/10/jpec-the-whys-and-the-hows/">blog post</a>.</p>
+
+<h2>Features</h2>
+
+<p>The library allows you to write JPEG compressed images from input image data on memory. No more, no less.</p>
+
+<p>More precisely:</p>
+
+<ul>
+<li>it works in <strong>grayscale only</strong> (monochrome JPEG file): there is no support for color so far,</li>
+<li>it produces baseline, DCT-based (SOF0), JFIF 1.01 (APP0) JPEG-s,</li>
+<li>it supports <strong>8x8 blocks only</strong>,</li>
+<li>it includes default quantization and Huffman tables that are not customizable at runtime.</li>
+</ul><h2>Build</h2>
+
+<p>Just type:</p>
+
+<pre><code>make
+</code></pre>
+
+<p>This produces:</p>
+
+<ul>
+<li>
+<code>libjpec.a</code>: the static library,</li>
+<li>
+<code>jpec</code>: a simple command-line tool used to test the library (see <code>main.c</code>)</li>
+</ul><blockquote>
+<p><strong>NOTE</strong> the command-line tool depends on OpenCV HighGUI module to easily read any kind of input image. You need to have OpenCV development libraries installed on your machine to use it (e.g. <code>brew install opencv</code> on Mac OS X with Homebrew).</p>
+</blockquote>
+
+<h2>Usage</h2>
+
+<p>If you want to embed the library into your own C code you are free to create the static library file, and include <code>jpec.h</code> main header, or to copy-paste the whole code into your project.</p>
+
+<p>Then, encoding a raw image is a matter of a few lines of code:</p>
+
+<pre><code>    /* Create a JPEG encoder provided image data */
+    jpec_enc_t *e = jpec_enc_new(img, w, h);
+
+    /* Compress */
+    int len;
+    const uint8_t *jpeg = jpec_enc_run(e, &amp;len);
+
+    /* Do something with the JPEG blob (e.g. save into a file, etc) */
+
+    /* Release the encoder */
+    jpec_enc_del(e);
+</code></pre>
+
+<h2>Authors</h2>
+
+<p><a href="https://github.com/mbrenon">Maxime Brénon</a> &amp; <a href="http://about.me/deltheil">Cédric Deltheil</a>.</p>
+
+<h2>Copyright</h2>
+
+<p>Copyright (c) 2012 Moodstocks SAS</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Moodstocks">Moodstocks</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
