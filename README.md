@@ -8,9 +8,9 @@ It is both **portable** (tested on x86 and ARM) and **lightweight** (around 600 
 
 The library has no external dependencies.
 
-It is a perfect candidate if you have some embedded C code you need to extend with a JPEG encoder the easy way, e.g. it is currently used in production within the [Moodstocks SDK](https://github.com/Moodstocks/moodstocks-sdk) (as of release v3.1) to compress frames that are sent to [Moodstocks API](https://github.com/Moodstocks/moodstocks-api) search service.
+It is a perfect candidate if you have some embedded C code you need to extend with a JPEG encoder the easy way, e.g. it is currently used in production within the [Moodstocks SDK](https://moodstocks.com/docs/ios/) (as of release v3.1) to compress frames that are sent to [Moodstocks API](https://moodstocks.com/docs/http-api/) search service.
 
-If you want to know more, feel free to read this [blog post](http://www.moodstocks.com/2012/02/10/jpec-the-whys-and-the-hows/).
+If you want to know more, feel free to read this [blog post](https://moodstocks.com/2012/02/10/jpec-the-whys-and-the-hows/).
 
 ## Features
 
@@ -60,4 +60,4 @@ Then, encoding a raw image is a matter of a few lines of code:
 
 ## Copyright
 
-Copyright (c) 2012 Moodstocks SAS
+Copyright (c) 2014 Moodstocks SAS

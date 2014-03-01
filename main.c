@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012 Moodstocks SAS
+ * Copyright (c) 2014 Moodstocks SAS
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -50,6 +50,7 @@ int main(int argc, char** argv) {
     FILE *file = fopen("result.jpg", "wb");
     fwrite(jpeg, sizeof(uint8_t), len, file);
     fclose(file);
+    printf("Done: result.jpg (%d bytes)\n", len);
     jpec_enc_del(e);
     free(img);
   }
