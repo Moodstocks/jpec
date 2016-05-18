@@ -8,9 +8,7 @@ It is both **portable** (tested on x86 and ARM) and **lightweight** (around 600 
 
 The library has no external dependencies.
 
-It is a perfect candidate if you have some embedded C code you need to extend with a JPEG encoder the easy way, e.g. it is currently used in production within the [Moodstocks SDK](https://moodstocks.com/docs/ios/) (as of release v3.1) to compress frames that are sent to [Moodstocks API](https://moodstocks.com/docs/http-api/) search service.
-
-If you want to know more, feel free to read this [blog post](https://moodstocks.com/2012/02/10/jpec-the-whys-and-the-hows/).
+It is a perfect candidate if you have some embedded C code you need to extend with a JPEG encoder the easy way.
 
 ## Features
 
@@ -34,7 +32,7 @@ This produces:
 * `libjpec.a`: the static library,
 * `jpec`: a simple command-line tool used to test the library (see `main.c`)
 
-> **NOTE** the command-line tool depends on OpenCV HighGUI module to easily read any kind of input image. You need to have OpenCV development libraries installed on your machine to use it (e.g. `brew install opencv` on Mac OS X with Homebrew).
+> **NOTE** the command-line tool depends on OpenCV 2 HighGUI module to easily read any kind of input image. You need to have OpenCV development libraries installed on your machine to use it (e.g. `brew install opencv` on Mac OS X with Homebrew).
 
 ## Usage
 
@@ -42,17 +40,19 @@ If you want to embed the library into your own C code you are free to create the
 
 Then, encoding a raw image is a matter of a few lines of code:
 
-        /* Create a JPEG encoder provided image data */
-        jpec_enc_t *e = jpec_enc_new(img, w, h);
+```C
+/* Create a JPEG encoder provided image data */
+jpec_enc_t *e = jpec_enc_new(img, w, h);
 
-        /* Compress */
-        int len;
-        const uint8_t *jpeg = jpec_enc_run(e, &len);
+/* Compress */
+int len;
+const uint8_t *jpeg = jpec_enc_run(e, &len);
 
-        /* Do something with the JPEG blob (e.g. save into a file, etc) */
+/* Do something with the JPEG blob (e.g. save into a file, etc) */
 
-        /* Release the encoder */
-        jpec_enc_del(e);
+/* Release the encoder */
+jpec_enc_del(e);
+```
 
 ## Authors
 
@@ -60,4 +60,4 @@ Then, encoding a raw image is a matter of a few lines of code:
 
 ## Copyright
 
-Copyright (c) 2014 Moodstocks SAS
+Copyright (c) 2012-2016 Moodstocks SAS
