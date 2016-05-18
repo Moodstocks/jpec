@@ -29,7 +29,7 @@ $(LIBNAME): $(OBJS)
 	$(RANLIB) $@
 
 $(CLINAME): $(LIBNAME) main.c
-	$(CC) -std=c99 `pkg-config --cflags --libs opencv` -Iinclude -L. -l$@ main.c -o $@
+	$(CC) -o $@ main.c -std=c99 `pkg-config --cflags --libs opencv` -Iinclude -L. -l$@
 
 clean:
 	$(rm) $(OBJS) $(CLINAME) $(LIBNAME)
